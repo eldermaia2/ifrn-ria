@@ -18,10 +18,10 @@
 	 "customizations": {
 			 "vscode": { 
 				"settings": {},
-				"extensions": [ vscode-icons-team.vscode-icons,
-								dbaeumer.vscode-eslint,
-								xabikos.javascriptsnippets,
-								esbenp.prettier-vscode
+				"extensions": [ "vscode-icons-team.vscode-icons",
+								"dbaeumer.vscode-eslint",
+								"xabikos.javascriptsnippets",
+								"esbenp.prettier-vscode"
 			] 
 	 				
 			}
