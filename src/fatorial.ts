@@ -1,11 +1,11 @@
-function fatorial(n: number): number | string {
-    if (n < 0) {
-      return 'Entrada inválida';
-    } else if (n === 0) {
+function fatorial(n: number): number {
+  if (n < 0) {
+      throw new Error('Entrada inválida: números negativos não possuem fatorial.');
+  } else if (n === 0) {
       return 1;
-    } else {
-      return n * fatorial(n - 1) as number;
-    }
+  } else {
+      return n * fatorial(n - 1);
   }
-  
-  export default fatorial;  
+}
+
+export default fatorial;
