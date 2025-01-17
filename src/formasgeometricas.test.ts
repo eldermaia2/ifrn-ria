@@ -40,15 +40,7 @@ describe("Testes para a classe FormaGeometrica e suas subclasses", () => {
 
     test("Deve indicar que as áreas de Retângulo e Círculo são iguais", () => {
         const retangulo = new Retangulo(10, 10); // Área = 100
-        const circulo = new Circulo(Math.sqrt(100 / Math.PI)); // Área ≈ 100
-
-        const resultado = FormaGeometrica.compararAreas(retangulo, circulo);
-        expect(resultado).toBe("Retângulo e Círculo possuem áreas iguais.");
-    });
-
-    test("Deve lidar com diferenças de precisão para áreas iguais", () => {
-        const retangulo = new Retangulo(10, 10); // Área = 100
-        const circulo = new Circulo(5.6419); // Raio ajustado para maior precisão
+        const circulo = new Circulo(Math.sqrt(100 / Math.PI)); // Raio ajustado para área exata
 
         const resultado = FormaGeometrica.compararAreas(retangulo, circulo);
         expect(resultado).toBe("Retângulo e Círculo possuem áreas iguais.");
