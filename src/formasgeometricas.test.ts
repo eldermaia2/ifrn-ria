@@ -1,30 +1,48 @@
-import { FormaGeometrica, Retangulo, Circulo } from './formasgeometricas';
+// arquivo: formasgeometricas.test.ts
 
-describe('Testando as subclasses de FormaGeometrica', () => {
-  it('Deve calcular a área do retângulo corretamente', () => {
-    const retangulo = new Retangulo('Retângulo', 5, 10);
-    expect(retangulo.calcularArea()).toBe(50);
-  });
+import { Retangulo, Circulo, FormaGeometrica } from "./formasgeometricas";
 
-  it('Deve calcular a área do círculo corretamente', () => {
-    const circulo = new Circulo('Círculo', 7);
-    const areaEsperada = Math.PI * Math.pow(7, 2);
-    expect(circulo.calcularArea()).toBeCloseTo(areaEsperada, 5);
-  });
+describe("Testes para a classe FormaGeometrica e suas subclasses", () => {
+    test("Deve criar um Retângulo, calcular a área e alterar seus atributos", () => {
+        const retangulo = new Retangulo(10, 5);
+        expect(retangulo.calcularArea()).toBe(50);
 
-  it('Deve comparar corretamente as áreas do retângulo e do círculo', () => {
-    const retangulo = new Retangulo('Retângulo', 4, 4); // Área: 16
-    const circulo = new Circulo('Círculo', 2); // Área: ~12.566
+        // Alterando atributos
+        retangulo.largura = 20;
+        retangulo.altura = 10;
+        expect(retangulo.calcularArea()).toBe(200);
+    });
 
-    const resultado = FormaGeometrica.compararAreas(retangulo, circulo);
-    expect(resultado).toBe('Retângulo tem uma área maior.');
-  });
+    test("Deve criar um Círculo, calcular a área e alterar seu atributo", () => {
+        const circulo = new Circulo(7);
+        expect(circulo.calcularArea()).toBeCloseTo(153.938, 3);
 
-  it('Deve indicar que as áreas são iguais', () => {
-    const retangulo = new Retangulo('Retângulo', 3, 3); // Área: 9
-    const circulo = new Circulo('Círculo', Math.sqrt(9 / Math.PI)); // Área: ~9
+        // Alterando atributo
+        circulo.raio = 14;
+        expect(circulo.calcularArea()).toBeCloseTo(615.752, 3);
+    });
 
-    const resultado = FormaGeometrica.compararAreas(retangulo, circulo);
-    expect(resultado).toBe('As áreas de Retângulo e Círculo são iguais.');
-  });
+    test("Deve comparar as áreas de um Retângulo e um Círculo", () => {
+        const retangulo = new Retangulo(10, 5); // Área = 50
+        const circulo = new Circulo(7); // Área ≈ 153.94
+
+        const resultado = FormaGeometrica.compararAreas(retangulo, circulo);
+        expect(resultado).toBe("Círculo tem uma área maior que Retângulo.");
+    });
+
+    test("Deve comparar as áreas de dois Retângulos com áreas iguais", () => {
+        const retangulo1 = new Retangulo(10, 5); // Área = 50
+        const retangulo2 = new Retangulo(5, 10); // Área = 50
+
+        const resultado = FormaGeometrica.compararAreas(retangulo1, retangulo2);
+        expect(resultado).toBe("Retângulo e Retângulo possuem áreas iguais.");
+    });
+
+    test("Deve indicar que as áreas de Retângulo e Círculo são iguais", () => {
+        const retangulo = new Retangulo(10, 10); // Área = 100
+        const circulo = new Circulo(Math.sqrt(100 / Math.PI)); // Área ≈ 100
+
+        const resultado = FormaGeometrica.compararAreas(retangulo, circulo);
+        expect(resultado).toBe("Retângulo e Círculo possuem áreas iguais.");
+    });
 });
